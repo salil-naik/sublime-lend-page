@@ -5,7 +5,7 @@ import { ListItem } from "../listItem/index";
 
 export const Pools = () => {
   const [view, setView] = useState("list");
-  const [filter, setFilter] = useState("active");
+  const [filterOption, setFilterOption] = useState("active");
   const [pools, setPools] = useState([]);
 
   // temporary data
@@ -47,7 +47,7 @@ export const Pools = () => {
       id: 121,
       name: "Elizabeth Taylor",
       twHandle: "@jonas-williams",
-      tags: ["Open Borrow"],
+      tags: ["closed"],
       borrowRate: 11,
       borrowing: 5126,
       token: "USDT",
@@ -59,7 +59,7 @@ export const Pools = () => {
       id: 122,
       name: "Alfred Johnson",
       twHandle: "@alfred-johnson",
-      tags: [],
+      tags: ["collecting"],
       borrowRate: 15,
       borrowing: 6754,
       token: "SHIB",
@@ -77,7 +77,7 @@ export const Pools = () => {
       id: 123,
       name: "Jhon Smith",
       twHandle: "@john-smith",
-      tags: [],
+      tags: ["closed"],
       borrowRate: 13,
       borrowing: 75640,
       token: "USDC",
@@ -89,7 +89,7 @@ export const Pools = () => {
       id: 124,
       name: "",
       twHandle: "@jennifer-miller",
-      tags: ["Open Borrow"],
+      tags: ["Open Borrow", "collecting"],
       borrowRate: 14,
       borrowing: 60000,
       token: "UNI",
@@ -110,7 +110,7 @@ export const Pools = () => {
       id: 125,
       name: "Salina jones",
       twHandle: "@salina-jones",
-      tags: ["Open Borrow"],
+      tags: ["Open Borrow", "closed"],
       borrowRate: 18,
       borrowing: 45000,
       token: "LINK",
@@ -135,7 +135,7 @@ export const Pools = () => {
       id: 127,
       name: "Betty Allen",
       twHandle: "@robert-rodriguez",
-      tags: ["Open Borrow"],
+      tags: ["Open Borrow", "closed"],
       borrowRate: 12,
       borrowing: 7550,
       token: "BUSD",
@@ -147,7 +147,7 @@ export const Pools = () => {
       id: 128,
       name: "Susan Harris",
       twHandle: "@james-wilson",
-      tags: [],
+      tags: ["collecting"],
       borrowRate: 15,
       borrowing: 80000,
       token: "AXS",
@@ -171,7 +171,7 @@ export const Pools = () => {
       id: 130,
       name: "Elizabeth Taylor",
       twHandle: "@elizabeth-taylor",
-      tags: ["Open Borrow"],
+      tags: ["Open Borrow", "closed"],
       borrowRate: 19,
       borrowing: 68000,
       token: "DAI",
@@ -190,7 +190,7 @@ export const Pools = () => {
       id: 131,
       name: "Ritik Dutta",
       twHandle: "@joseph-jackson",
-      tags: ["Open Borrow"],
+      tags: ["Open Borrow", "collecting"],
       borrowRate: 20,
       borrowing: 57600,
       token: "BTCB",
@@ -202,7 +202,7 @@ export const Pools = () => {
       id: 132,
       name: "Susan Harris",
       twHandle: "@susan-harris",
-      tags: [],
+      tags: ["closed"],
       borrowRate: 16,
       borrowing: 17000,
       token: "CRO",
@@ -214,7 +214,7 @@ export const Pools = () => {
       id: 133,
       name: "Salil Naik",
       twHandle: "@anthony-lewis",
-      tags: ["Open Borrow"],
+      tags: ["Open Borrow", "closed"],
       borrowRate: 12,
       borrowing: 25000,
       token: "GRT",
@@ -274,7 +274,7 @@ export const Pools = () => {
       id: 138,
       name: "Alfred Johnson",
       twHandle: "@david-hill",
-      tags: ["Open Borrow"],
+      tags: ["Open Borrow", "closed"],
       borrowRate: 12,
       borrowing: 65100,
       token: "LEO",
@@ -309,8 +309,26 @@ export const Pools = () => {
   ];
 
   useEffect(() => {
-    setPools(poolData);
-  }, []);
+    filteredPools();
+  }, [filterOption, pools]);
+
+  //   filtering the list data as per the filter options
+  const filteredPools = () => {
+    let filteredData;
+    if (filterOption === "all pools") {
+      filteredData = poolData;
+    } else if (filterOption == "collecting") {
+      filteredData = poolData.filter((pool) =>
+        pool.tags.find(
+          (item) => item.toLowerCase() === filterOption.toLowerCase()
+        )
+      );
+    } else {
+      filteredData = poolData.filter((pool) => pool.status === filterOption);
+    }
+
+    setPools(filteredData);
+  };
 
   return (
     <div className={style.pools}>
@@ -319,8 +337,8 @@ export const Pools = () => {
         <PoolHeader
           view={view}
           changeView={(val) => setView(val)}
-          filter={filter}
-          changeFilter={(val) => setFilter(val)}
+          filter={filterOption}
+          changeFilter={(val) => setFilterOption(val)}
           tabs={["active", "collecting", "closed", "all pools"]}
         />
         {/* header for list view */}
@@ -332,7 +350,9 @@ export const Pools = () => {
             <Param>Locked Collateral</Param>
             <Param>Collection progress</Param>
           </div>
-          <div className="col-3 d-flex justify-content-end"><span style={{width: '195px'}}>Other Active Pools</span></div>
+          <div className="col-3 d-flex justify-content-end">
+            <span style={{ width: "195px" }}>Other Active Pools</span>
+          </div>
         </div>
 
         {/* list view */}
