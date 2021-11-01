@@ -1,0 +1,36 @@
+@import "../../variables";
+
+.card {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.87) 0%,
+    #ffffff 100%
+  );
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.07);
+  border-radius: 7px;
+  padding: 16px;
+  display: flex;
+  flex-shrink: 1;
+
+  &__icon {
+    height: 48px;
+    width: 48px;
+    margin-right: 17px;
+    background-color: #9beba5;
+    border-radius: 6px;
+  }
+
+  &__details {
+    .value {
+      font-size: 22px;
+      font-weight: 500;
+      line-height: 26px;
+    }
+
+    .desc {
+      font-size: 14px;
+      line-height: 21px;
+      color: $secondary-text;
+    }
+  }
+}

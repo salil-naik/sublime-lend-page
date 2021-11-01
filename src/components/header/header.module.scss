@@ -1,0 +1,48 @@
+@import "../../variables";
+
+.header{
+    height: 70px;
+    padding: 0 30px;
+    background-color: #fff;
+    display:flex; 
+    align-items: center;
+}
+
+.logo {
+    height: 30px;
+    margin-right: 50px;
+}
+
+.nav{
+    margin:0; 
+    padding: 0;
+    display:flex; 
+
+    a{
+        color: $secondary-text;
+        text-decoration: none;
+        position:relative;
+        font-size: 14px; 
+        font-weight: 500;
+        height: 100%;
+        line-height: 70px;
+
+        &:not(:last-child){
+            margin-right: 18px;
+        }
+
+        &:hover, &.active{
+            color: #000;
+
+            &::after{
+                content:"";
+                position:absolute;
+                height: 3px;
+                width: 100%; 
+                background-color: #000;
+                left: 0; 
+                bottom: 0;
+            }
+        }
+    }
+}
