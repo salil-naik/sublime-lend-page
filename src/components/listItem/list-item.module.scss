@@ -9,6 +9,7 @@
   display: flex;
   align-items: center;
 
+  //   border-bottom - used after because it not an edge-to-edge border that CSS providdes
   &::after {
     position: absolute;
     content: "";
@@ -32,64 +33,64 @@
     width: 32px;
     border-radius: 16px;
     margin-right: 16px;
-    background-color: #EBECEF;
+    background-color: #ebecef;
     color: black;
     text-align: center;
     line-height: 32px;
   }
 
-  .accountName{
-      font-size: 14px;
-      line-height: 21px;
-      color: $primary-text;
-  }
-
-  .tags-container{
-      display: flex;
-  }
-
-  .tag{
-      padding: 1px 5px;
-      color :#6E6E6E;
-      font-size: 10px;
-      line-height: 15px;
-      background: #EBEBEB;
-      border-radius: 3px;
-
-      &:not(:last-child){
-          margin-right: 10px;
-      }
-  }
-}
-
-.pool-param{
-    display: inline-block;
-    font-size: 14px; 
+  .accountName {
+    font-size: 14px;
+    line-height: 21px;
     color: $primary-text;
+  }
 
-    &:first-child{
-        // min-width: 110px;
-        // flex-grow: 12.7;
-        flex-basis: 21.7%;
+  .tags-container {
+    display: flex;
+  }
+
+  .tag {
+    padding: 1px 5px;
+    color: #6e6e6e;
+    font-size: 10px;
+    line-height: 15px;
+    background: #ebebeb;
+    border-radius: 3px;
+
+    &:not(:last-child) {
+      margin-right: 10px;
     }
-    &:nth-child(2){
-        // min-width: 163px;
-        // flex-grow: 16.3
-        flex-basis: 27.8%;
-    }
-    &:nth-child(3){
-        // min-width: 150px;
-        // flex-grow: 15;
-        flex-basis: 22.5%;
-    }
-    &:last-child{
-        // min-width: 163px;
-        // flex-grow: 16.3;
-        flex-basis: 28%;
-    }
+  }
 }
 
+// used flex basis to properly place the parameters in the list
+.pool-param {
+  display: inline-block;
+  font-size: 14px;
+  color: $primary-text;
 
-.token{
-    text-transform: uppercase;
+  &:first-child {
+    // min-width: 110px;
+    // flex-grow: 12.7;
+    flex-basis: 21.7%;
+  }
+  &:nth-child(2) {
+    // min-width: 163px;
+    // flex-grow: 16.3
+    flex-basis: 27.8%;
+  }
+  &:nth-child(3) {
+    // min-width: 150px;
+    // flex-grow: 15;
+    flex-basis: 22.5%;
+  }
+  &:last-child {
+    // min-width: 163px;
+    // flex-grow: 16.3;
+    flex-basis: 28%;
+  }
+}
+
+.token {
+  text-transform: uppercase;
 }

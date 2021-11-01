@@ -1,3 +1,5 @@
+@import "../../variables";
+
 .pools {
   padding: 25px 0;
 
@@ -9,9 +11,47 @@
     background: #ffffff;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.12);
     border-radius: 14px;
-    height: 500px; //rem
     margin-left: - 40px; 
     margin-right: -40px;
     padding: 0 20px;
+  }
+}
+
+.listHeader{
+  font-size: 12px; 
+  color: $primary-text;
+  display: flex;
+  align-items: center;
+  height: 44px;
+  position: relative; 
+  padding: 0 20px;
+  margin: 12px auto;
+
+  &::after{
+    content:" ";
+    position:absolute; 
+    height: 1px; 
+    width: calc(100% - 40px);
+    background: #F2F3F5;
+    bottom:0; 
+    left:20px;
+  }
+}
+
+.pool-param{
+  display: inline-block; 
+
+  &:first-child{
+      flex-basis: 21.7%;
+  }
+  &:nth-child(2){
+      flex-basis: 27.8%;
+  }
+  &:nth-child(3){
+      flex-basis: 22.5%;
+      padding-right: 30px;
+  }
+  &:last-child{
+      flex-basis: 28%;
   }
 }
