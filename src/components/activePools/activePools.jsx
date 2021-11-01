@@ -13,8 +13,8 @@ export const ActivePools = ({ pools, name }) => {
     } else {
       setTokens(pools);
     }
-  }, [pools]);
-
+  },[]);
+  
   //   checks if the image exists in the databse.
   let fetchImage = (name) => {
     try {

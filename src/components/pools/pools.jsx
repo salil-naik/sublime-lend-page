@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import style from "./pools.module.scss";
 import { PoolHeader } from "../poolHeader/index";
 import { ListItem } from "../listItem/index";
+import { GridItem } from "../gridItem/index";
 
 export const Pools = () => {
   const [view, setView] = useState("list");
@@ -310,7 +311,7 @@ export const Pools = () => {
 
   useEffect(() => {
     filteredPools();
-  }, [filterOption, pools]);
+  }, [filterOption]);
 
   //   filtering the list data as per the filter options
   const filteredPools = () => {
@@ -342,23 +343,39 @@ export const Pools = () => {
           tabs={["active", "collecting", "closed", "all pools"]}
         />
         {/* header for list view */}
-        <div className={style.listHeader}>
-          <div className="col-3">Borrower</div>
-          <div className="col-6 d-flex align-items-center">
-            <Param>Borrow Rate</Param>
-            <Param>Borrowing</Param>
-            <Param>Locked Collateral</Param>
-            <Param>Collection progress</Param>
+        {view === "list" && (
+          <div className={style.listHeader}>
+            <div className="col-3">Borrower</div>
+            <div className="col-6 d-flex align-items-center">
+              <Param>Borrow Rate</Param>
+              <Param>Borrowing</Param>
+              <Param>Locked Collateral</Param>
+              <Param>Collection progress</Param>
+            </div>
+            <div className="col-3 d-flex justify-content-end">
+              <span style={{ width: "195px" }}>Other Active Pools</span>
+            </div>
           </div>
-          <div className="col-3 d-flex justify-content-end">
-            <span style={{ width: "195px" }}>Other Active Pools</span>
-          </div>
-        </div>
+        )}
 
         {/* list view */}
-        {pools.map((item) => {
-          return <ListItem pool={item} key={item.id} />;
-        })}
+        {view === "list" &&
+          pools.map((item) => {
+            return <ListItem pool={item} key={item.id} />;
+          })}
+
+        {/* grid view */}
+        {view === "grid" && (
+          <div className={`row px-4 mt-4 ${style.equal}`} >
+            {pools.map((item) => {
+              return (
+                <div className="col-4 mb-4" key={item.id}>
+                  <GridItem pool={item} />
+                </div>
+              );
+            })}
+          </div>
+        )}
       </div>
     </div>
   );
