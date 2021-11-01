@@ -1,12 +1,37 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+@import "./variables";
 
 body{
     font-family: 'Poppins', sans-serif;
 }
 
-// overwriting polygonmesh classes
+h1,h2,h3,h4,h5,h6,p,ul{
+    margin:0;
+    padding:0;
+}
+
+// overwriting bootstrap classes
 h2,.heading-2{
     font-size: 24px; 
     line-height: 36px; 
     font-weight: 600;
+}
+
+.btn{
+    font-size: 14px;
+    padding-left: 20px;
+    padding-right: 20px;
+
+    &:hover{
+        font-weight: 500;
+    }
+}
+
+.btn-light{
+    background-color: #EBECEF;
+
+    &:hover{
+        background-color: $theme;
+        color: white;
+    }
 }
