@@ -16,8 +16,22 @@
     height: 48px;
     width: 48px;
     margin-right: 17px;
-    background-color: #9beba5;
     border-radius: 6px;
+    display:flex; 
+    align-items: center;
+    justify-content: center;
+
+    &.return-rate{
+      background-color: #9BEBA5;
+    }
+
+    &.amount-lent{
+      background-color: #9696EB;
+    }
+
+    &.roi{
+      background-color: #F0AA5B;
+    }
   }
 
   &__details {
